@@ -3,6 +3,7 @@ import { FaStar, FaCodeBranch, FaEye } from "react-icons/fa";
 
 async function fetchRepos() {
   const res = await fetch("https://api.github.com/users/shayangraph/repos");
+  await new Promise((resolve) => setTimeout(resolve, 1000));// wait 1 second
   const repos = await res.json();
   return repos;
 }
