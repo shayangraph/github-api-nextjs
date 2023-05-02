@@ -2,8 +2,11 @@ import Link from "next/link";
 import { FaStar, FaCodeBranch, FaEye } from "react-icons/fa";
 
 async function fetchRepo(name) {
-  const res = await fetch(`https://api.github.com/repos/shayangraph/${name}`);
-  await new Promise((resolve) => setTimeout(resolve, 1000)); // wait 1 second
+  const res = await fetch(`https://api.github.com/repos/shayangraph/${name}`, {
+    next: {
+      revalidate: 60,
+    },
+  });
   const repos = await res.json();
   return repos;
 }
